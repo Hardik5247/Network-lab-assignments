@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iterator>
 #include <vector>
 using namespace std;
 
@@ -26,11 +27,13 @@ class Node
             connected_links.push_back(link);
         }
         
-        template <size_t n>
         void receive(DataFrame frame)
-        {
+        {   
+            string str(frame.ReadMessage(mac_addr));
+            if (str.compare("") == 0)
+                return;
             cout << "Data Received by Node " << device_id << " is '" << 
-                    frame.ReadMessage(mac_addr) << "'" << endl;
+                    str << "'" << endl;
         }
         
         template <size_t n>
@@ -41,9 +44,12 @@ class Node
             
            string str(device_id); 
            DataFrame frame("Greetings from node " + str, mac_addr, dest_mac_addr);
-           sendToLink(frame);
-        }
-        
+           
+           vector<Link>::iterator ptr;
+
+           for (ptr = connected_links.begin(); ptr < connected_links.end(); ptr++)
+                ptr.sendToLink(frame);
+        }     
 };
 
 
