@@ -17,7 +17,7 @@ class Node
         uint64_t mac_addr[6];
     
     public:
-        vector<Link> connected_links;
+        vector<Link*> connected_links;
 
         Node(uint64_t b[])
         {
@@ -41,7 +41,7 @@ class Link
         bool isUniDirectional = true;
 
     public:
-        vector<Node> connected_nodes;
+        vector<Node*> connected_nodes;
 
         void sendToLink(DataFrame frame);
 };
@@ -52,18 +52,16 @@ void Node::receive(DataFrame frame)
     string str(frame.ReadMessage(mac_addr));
     if (str.compare(empty_str) == 0)
         return;
-    cout << "Data received by node " << to_string(device_id) << " is '" << 
+    cout << "Data received by node " << device_id << " is '" << 
             str << "'" << endl;
 }
 
 void Link::sendToLink(DataFrame frame)
 {   
-    vector<Node>::iterator ptr;
-    
-    // cout << connected_nodes.size() << endl; // size equals 0 ?
+    vector<Node*>::iterator ptr;
     
     for (ptr = connected_nodes.begin(); ptr < connected_nodes.end(); ptr++)
-        (*ptr).receive(frame);
+        (**ptr).receive(frame);
 }
 
 template <size_t n>
@@ -78,9 +76,9 @@ void Node::transmit(uint64_t (&dest_mac_addr)[n])
     
     cout << "Data sent by node " << device_id << " is '" << str << "'" << endl;
 
-    vector<Link>::iterator ptr;
+    vector<Link*>::iterator ptr;
 
     for (ptr = connected_links.begin(); ptr < connected_links.end(); ptr++)
-        (*ptr).sendToLink(frame);
+        (**ptr).sendToLink(frame);
 }
 

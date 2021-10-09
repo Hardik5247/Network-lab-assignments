@@ -18,27 +18,23 @@ void test1()
 
     uint64_t broadcast_mac_addr3[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 
-    link.connected_nodes.push_back(node1);
-    link.connected_nodes.push_back(node2);
+    link.connected_nodes.push_back(&node1);
+    node1.connected_links.push_back(&link);
 
-    node1.connected_links.push_back(link);
-    node2.connected_links.push_back(link);
+    link.connected_nodes.push_back(&node2);
+    node2.connected_links.push_back(&link);
 
-    link.connected_nodes.push_back(node3);
-    node3.connected_links.push_back(link);
-
-    //cout << "Node 1 connected_links length " << node1.connected_links.size() << endl;
-    //cout << "Node 2 connected_links length " << node2.connected_links.size() << endl;
-    //cout << "Link 1 connected_nodes length " << link.connected_nodes.size() << endl;
+    link.connected_nodes.push_back(&node3);
+    node3.connected_links.push_back(&link);
 
     cout << "Unicast message examples:\n" << endl;
-    node1.transmit(node_mac_addr2);
-    node2.transmit(node_mac_addr1);
-    node2.transmit(node_mac_addr3);
+    node1.transmit(node_mac_addr2); // Node 1 --> Node 2
+    node2.transmit(node_mac_addr1); // Node 2 --> Node 1
+    node2.transmit(node_mac_addr3); // Node 2 --> Node 3
 
     cout << "\nBroadcast message examples:\n" << endl;
-    node1.transmit(broadcast_mac_addr3);
-    node3.transmit(broadcast_mac_addr3);
+    node1.transmit(broadcast_mac_addr3); // Broadcast from Node 1
+    node3.transmit(broadcast_mac_addr3); // Broadcast from Node 3
 }
 
 int main()
