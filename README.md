@@ -6,10 +6,10 @@ This is the submission for **Assignment-2** for the **CSN-361** course.
 
 - Divyansh Agarwal (19115055)
 - Gagan Sharma (19114032)
-- Hardik Thami ( 19114035)
-- Jitesh Jain ( 19114039)
+- Hardik Thami (19114035)
+- Jitesh Jain (19114039)
 - R Chinmay (19114067)
-- Shlok Goyal ( 19114078)
+- Shlok Goyal (19114078)
 
 ## Contents
 1. [Problem Statement](#1-problem-statement)
@@ -35,7 +35,7 @@ There are two header files containing the important classes required for running
 - `DataFrame.h`
     - Represents the `data packet` to be transmitted/received with:
         - `msg`: Message to be transferred
-        - `msg_seq_num`: Message sequence numberS
+        - `msg_seq_num`: Message sequence number
         - `src_mac_addr`: Source MAC address
         - `dest_mac_addr`: Destination MAC address
     - Contains the required functions as well for creating and reading a DataFrame object as well.
@@ -48,7 +48,11 @@ There are two header files containing the important classes required for running
             - `connected_links`: List of *Links* to which a node is connected.
         - Contains the required functions for transmitting and receiving the data.
 
-    - `Link`: Represents the connection among the nodes and ensures that the `DataFrame` objects keep flowing throughout the network.
+    - `Link`: Represents the connection among the nodes.
+        - Represents each link in the network with:
+            - `isUniDirectional`: Boolean indicating whether flow of data frame is Unidirectional or not.
+            - `connected_nodes`: List of *Nodes* which connected to a given link.
+        - Contains the required function for ensuring that the `DataFrame` objects keep flowing throughout the network.
 
 ## 3. Simulation
 
