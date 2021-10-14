@@ -88,7 +88,7 @@ void Node::transmit(uint64_t (&dest_mac_addr)[n])
     
     string str("Greetings from node " + to_string(device_id));
 
-    DataFrame frame(str, mac_addr, dest_mac_addr, count);
+    DataFrame frame(str, mac_addr, dest_mac_addr, count++);
     
     cout << "Data sent by node " << device_id << " is '" << str << "'" << endl;
 
