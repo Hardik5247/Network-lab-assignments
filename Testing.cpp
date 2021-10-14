@@ -39,7 +39,6 @@ void test1()
     node2.transmit(node_mac_addr1); // Node 2 --> Node 1
     node2.transmit(node_mac_addr3); // Node 2 --> Node 3
     node3.transmit(node_mac_addr1); // Node 3 --> Node 1
-    node1.transmit(node_mac_addr1); // Node 1 --> Node 1
 
     cout << "\nBroadcast message examples:\n" << endl;
     node1.transmit(broadcast_mac_addr3); // Broadcast from Node 1
