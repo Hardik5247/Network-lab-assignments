@@ -2,8 +2,6 @@
 
 using namespace std;
 
-static int count1 = 0;
-
 class DataFrame
 {
 	private:
@@ -13,10 +11,10 @@ class DataFrame
 	  	uint64_t dest_mac_addr[6];
 	
 	public:
-	  	DataFrame(string a, uint64_t c[], uint64_t d[])
+	  	DataFrame(string a, uint64_t c[], uint64_t d[], int count1)
 	  	{
 			msg = a;
-			msg_seq_num = (++count1);
+			msg_seq_num = (count1);
 
 			for(int i = 0; i < 5; ++i)
 			  src_mac_addr[i] = c[i];
