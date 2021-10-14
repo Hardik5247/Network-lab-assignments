@@ -13,7 +13,7 @@ This is the submission for **Assignment-2** for the **CSN-361** course.
 
 ## Contents
 1. [Problem Statement](#1-problem-statement)
-2. [Repository Guide](#2-repository-overview)
+2. [Repository Guide](#2-repository-guide)
 3. [Simulation](#3-simulation)
 
 ## 1. Problem Statement
